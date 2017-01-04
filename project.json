@@ -35,7 +35,8 @@
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
-    "xmlDoc": true
+    "xmlDoc": true,
+    "outputName": "Reminder App"
   },
 
   "runtimeOptions": {
