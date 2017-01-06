@@ -52,7 +52,7 @@ namespace ReminderAPIApplication
               var basePath = PlatformServices.Default.Application.ApplicationBasePath;
 
               // Set the comments path for the swagger json and ui
-              var xmlPath = Path.Combine(basePath,"ReminderAPIApplication.xml");
+              var xmlPath = Path.Combine(basePath,"ReminderApp.xml");
               options.IncludeXmlComments(xmlPath);
               options.DescribeAllEnumsAsStrings();
             });
