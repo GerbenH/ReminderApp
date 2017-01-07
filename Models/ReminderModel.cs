@@ -32,7 +32,7 @@ namespace ReminderAPIApplication.Models
             set;
         }
         /// <summary>
-        /// Gets and sets a <see cref="DateTime"> object that represents the time that the reminding should be done.
+        /// Gets and sets a <see cref="DateTime"/> object that represents the time that the reminding should be done.
         /// </summary>
         /// <returns></returns>
         public DateTime RemindingTime

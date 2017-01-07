@@ -22,8 +22,9 @@ namespace ReminderAPIApplication
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
-                .Build()
-                .Run();
+                .Build();
+            
+            host.Run();
         }
     }
 }
