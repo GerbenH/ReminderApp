@@ -13,18 +13,15 @@ namespace ReminderAPIApplication
     {
         public static void Main(string[] args)
         {
-            //var config = new ConfigurationBuilder()
-            //    .AddCommandLine(args)
-            //    .AddEnvironmentVariables(prefix: "ASPNETCORE_")
-            //    .Build();
+            var config = new ConfigurationBuilder()
+                .AddCommandLine(args)
+                .Build();
 
             var host = new WebHostBuilder()
-                //.UseConfiguration(config)
+                .UseConfiguration(config)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls(args[0])
                 .Build();
 
             host.Run();
