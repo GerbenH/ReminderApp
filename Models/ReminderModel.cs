@@ -1,7 +1,8 @@
+using System;
+using Microsoft.EntityFrameworkCore;
+
 namespace ReminderAPIApplication.Models
 {
-    using System;
-
     /// <summary>
     /// Represents one reminder that the user wanted to be reminded of.
     /// </summary>
@@ -21,6 +22,7 @@ namespace ReminderAPIApplication.Models
         public string Key
         {
             get;
+            set;
         }
         /// <summary>
         /// Gets and sets the name of the reminder

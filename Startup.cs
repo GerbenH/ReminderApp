@@ -11,6 +11,7 @@ namespace ReminderAPIApplication
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.PlatformAbstractions;
+    using Microsoft.EntityFrameworkCore;
     using Swashbuckle.Swagger.Model;
     using Models;
 
@@ -58,6 +59,17 @@ namespace ReminderAPIApplication
             });
 
             services.AddSingleton<IReminderRepository,ReminderRepository>();
+
+            //Use a PostgreSQL database
+            var sqlConnectionString = "User ID=gerbenheinen;Password=gerbenheinen;Host=localhost;Port=5432;Database=reminderapp;Pooling=true;";
+
+            services.AddDbContext<ReminderModelDbContext>(options =>
+                options.UseNpgsql(
+                    sqlConnectionString
+                )
+            );
+
+            // services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
