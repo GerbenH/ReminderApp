@@ -1,8 +1,10 @@
 namespace ReminderAPIApplication.Controllers
 {
+  using System;
   using System.Collections.Generic;
   using Microsoft.AspNetCore.Mvc;
   using Models;
+  using Microsoft.EntityFrameworkCore;
 
   /// <summary>
   /// API for sending reminders to the reminder service.
@@ -10,32 +12,35 @@ namespace ReminderAPIApplication.Controllers
   [Route("api/[controller]")]
   public class RemindersController : Controller
   {
-    public RemindersController(IReminderRepository reminders)
+    public RemindersController()
     {
-      Reminders = reminders;
-    }
-
-    public IReminderRepository Reminders
-    {
-      get;
-      set;
     }
 
     [HttpGet]
     public IEnumerable<ReminderModel> GetAll()
     {
-      return Reminders.GetAll();
+      using(var database = new ReminderModelDbContext())
+      {
+        database.ReminderModels.Add(new ReminderModel
+        {
+          Name= "Test1",
+          RemindingTime = DateTime.Now
+        });
+        database.SaveChanges();
+      }
+      return new List<ReminderModel>();
     }
 
     [HttpGet("{key}", Name = "GetReminder")]
     public IActionResult GetByKey(string key)
     {
-      var item = Reminders.Find(key);
-      if (item == null)
+      ReminderModel model = new ReminderModel
       {
-        return NotFound();
-      }
-      return new ObjectResult(item);
+        Name = "Test2",
+        RemindingTime = DateTime.Now
+      };
+
+      return new ObjectResult(model);
     }
 
   }

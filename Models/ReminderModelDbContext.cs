@@ -6,8 +6,7 @@ namespace ReminderAPIApplication.Models
 {
     public class ReminderModelDbContext : DbContext
     {
-        public ReminderModelDbContext(DbContextOptions<ReminderModelDbContext> options) 
-            : base(options)
+        public ReminderModelDbContext()
         {
         }
 
@@ -18,6 +17,15 @@ namespace ReminderAPIApplication.Models
             builder.Entity<ReminderModel>().HasKey(m => m.Key);
 
             base.OnModelCreating(builder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //Use a PostgreSQL database
+            var sqlConnectionString = "User ID=gerbenheinen;Password=gerbenheinen;Host=localhost;Port=5432;Database=reminderapp;Pooling=true;";
+
+            optionsBuilder.UseNpgsql(sqlConnectionString);
+
         }
     }
 }
